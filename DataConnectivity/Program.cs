@@ -116,6 +116,33 @@ namespace DataConnectivity
 
             #endregion
 
+
+            Console.WriteLine("");
+            Console.WriteLine("------------- N O R T H W I N  D ------------- ");
+
+            #region NorthWind GetCustomersByCountry
+
+            //Demonstrtion North Wind
+            Console.WriteLine("Sample Result for United Kingdom");
+            Console.WriteLine("--------- GetCustomersByCountry --------");
+            NorthWind.GetCustomersByCountry("UK");
+
+            #endregion
+            Console.WriteLine("");
+            Console.WriteLine("-");
+
+            #region NorthWind GetCategory
+            Console.WriteLine("Sample Result for Dairy Products");
+            Console.WriteLine("--------- GetCategory --------");
+            NorthWind.GetCategory(4);
+            #endregion
+
+            #region Northwind GetProductsByCategory
+            Console.WriteLine("-");
+            NorthWind.GetProductsByCategory("Dairy Products");
+
+            #endregion
+
             Console.ReadLine();
         }
         private static string? IsStringEmptyOrNull(string? str)
