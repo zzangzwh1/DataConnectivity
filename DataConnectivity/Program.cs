@@ -125,7 +125,9 @@ namespace DataConnectivity
             //Demonstrtion North Wind
             Console.WriteLine("Sample Result for United Kingdom");
             Console.WriteLine("--------- GetCustomersByCountry --------");
-            NorthWind.GetCustomersByCountry("UK");
+
+            string testGetCustomersByCountry = "UK";
+            NorthWind.GetCustomersByCountry(testGetCustomersByCountry);
 
             #endregion
             Console.WriteLine("");
@@ -134,12 +136,16 @@ namespace DataConnectivity
             #region NorthWind GetCategory
             Console.WriteLine("Sample Result for Dairy Products");
             Console.WriteLine("--------- GetCategory --------");
-            NorthWind.GetCategory(4);
+            int testGetCategory =4;
+            NorthWind.GetCategory(testGetCategory);
             #endregion
 
             #region Northwind GetProductsByCategory
+            Console.WriteLine("");
             Console.WriteLine("-");
-            NorthWind.GetProductsByCategory("Dairy Products");
+            Console.WriteLine("--------- GetProductsByCategory --------");
+            string testGetProductsByCategory = "Dairy Products";
+            NorthWind.GetProductsByCategory(testGetProductsByCategory);
 
             #endregion
 
