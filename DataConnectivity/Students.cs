@@ -236,7 +236,7 @@ namespace DataConnectivity
                     try
                     {
                         command.CommandType = CommandType.StoredProcedure;
-                        command.Parameters.AddWithValue("@ProgramCode", programCode);
+                        command.Parameters.AddWithValue("@ProgramCode", programCode).Size=10;
 
 
                         using (SqlDataReader reader = command.ExecuteReader())
