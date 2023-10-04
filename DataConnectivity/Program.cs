@@ -162,7 +162,8 @@ namespace DataConnectivity
                 string addStudentProgramCode = "BAIST";
 
                 Console.WriteLine($"Reuslt ===={testStduent.StudentId} ");*/
-
+            BCS requestDirector = new BCS();
+            #region EnrollStudent
             TestStudent accepetedStudent = new()
             { 
                StudentId= "21",
@@ -172,14 +173,27 @@ namespace DataConnectivity
             
             };
 
-            BCS requestDirector = new BCS();
-            bool isSucess = requestDirector.EnrollStudent(accepetedStudent, "BAIST");
+         /*
+            bool isEnrolledStudent = requestDirector.EnrollStudent(accepetedStudent, "BAIST");
 
-            if (isSucess)
+            if (isEnrolledStudent)
                 Console.WriteLine("Students Are Successfullay Added");
             else
-                Console.WriteLine("FAILED!!!");
+                Console.WriteLine("FAILED!!!");*/
+            #endregion
 
+            #region CreateProgram
+
+            string createProgramProgramCode = "BAIST21";
+            string createProgramDescription = "THis IS Teststs";
+
+            bool isCreatedProgram = requestDirector.CreateProram(createProgramProgramCode, createProgramDescription);
+
+            if(isCreatedProgram)
+                Console.WriteLine("Program is Successfullay Createded");
+            else
+                Console.WriteLine("FAILED!!!");
+            #endregion
 
             Console.ReadLine();
         }

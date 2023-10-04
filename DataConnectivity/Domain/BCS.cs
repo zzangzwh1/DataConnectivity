@@ -17,5 +17,13 @@ namespace DataConnectivity.Domain
             return isSuccess ? true : false;
           
         }
+        public bool CreateProram(string programCode, string description)
+        {
+            TestProgram programManager = new TestProgram();
+
+            bool isSuccess = programManager.AddProgram(programCode, description);
+
+            return isSuccess;
+        }
     }
 }
