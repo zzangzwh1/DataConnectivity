@@ -46,7 +46,8 @@ namespace DataConnectivity
                                 {
                                     for (int i = 0; i < reader.FieldCount; i++)
                                     {
-                                        if (reader[i].ToString() == null || reader[i].ToString() == "")
+                                        //db null
+                                        if (reader[i] == DBNull.Value || reader[i].ToString() == "")
                                         {
                                             Console.Write("N/A;");
                                         }
@@ -81,8 +82,7 @@ namespace DataConnectivity
         #region NorthWind GetCategory
 
         public static void GetCategory(int categoryId)
-        {
-            
+        {          
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
@@ -92,7 +92,6 @@ namespace DataConnectivity
                     command.CommandType = CommandType.StoredProcedure;
                     try
                     {
-
                         command.Parameters.AddWithValue("@CategoryID", categoryId);
 
                         using (SqlDataReader reader = command.ExecuteReader())

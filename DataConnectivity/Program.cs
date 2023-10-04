@@ -1,6 +1,8 @@
 ﻿using System.Data.SqlTypes;
 using Microsoft.Data.SqlClient;
 using System.Data;
+using DataConnectivity.Domain;
+using DataConnectivity.TechService;
 
 
 namespace DataConnectivity
@@ -11,108 +13,108 @@ namespace DataConnectivity
         {
             // Programs
             #region Demonstration AddProgram
-            /*   Console.WriteLine("--- ADD STUDENT ---");
-             string addProgramCode = "TAgSTgggsffsdffs;sdkf;lskfl;sdkf;lsdkf;lskfl;sdkf;lsdkfl;sdk;lfs!";
-                string addProgramDescription = "This is Baist!";
-                bool isAddedProgram = Programs.AddProgram(addProgramCode, addProgramDescription);
+            /*       Console.WriteLine("--- ADD STUDENT ---");
+                   string addProgramCode = "Demo";
+                   string addProgramDescription = "This is Demo!!!";
+                   bool isAddedProgram = Programs.AddProgram(addProgramCode, addProgramDescription);
 
-                if (isAddedProgram)
-                {
-                    Console.WriteLine($"Program is Success Fully Added!");
-                }
-                else
-                {
-                    Console.WriteLine($"Error Occurreed - Failed!");
-                }*/
+                   if (isAddedProgram)
+                   {
+                       Console.WriteLine($"Program is Success Fully Added!");
+                   }
+                   else
+                   {
+                       Console.WriteLine($"Error Occurreed - Failed!");
+                   }*/
             #endregion
 
             #region Demonstration GetProgram
 
             Console.WriteLine("------------- GET PROGRAM -------------");
-            string getPrgoramCode = "BAISThbb";
-            Programs.GetProgram(getPrgoramCode);
+            /*          string getPrgoramCode = "Demo";
+                      Programs.GetProgram(getPrgoramCode);*/
 
             #endregion
             Console.WriteLine();
             #region Demonstration AddStudent
 
             Console.WriteLine("------------- ADD Student -------------");
-            string addStudentID = "12";
-            string addFirtName = "MCH";
-            string addlastName = "c";
-            string addEmail = "";
-            string addProgramCode = "BAIST";
+            /*   string addStudentID = "99";
+               string addFirtName = "Demo";
+               string addlastName = "Demo";
+               string addEmail = "";
+               string addProgramCodes = "Demo";
 
-            bool isStudentAdd = Students.AddStudent(addStudentID, addFirtName, addlastName, addEmail,addProgramCode);
+               bool isStudentAdd = Students.AddStudent(addStudentID, addFirtName, addlastName, addEmail, addProgramCodes);
 
-            if (isStudentAdd)
-            {
-                Console.WriteLine($"Student is Success Fully Added!");
-            }
-            else
-            {
-                Console.WriteLine($"Error Occurred - Failed!");
-            }
-
+               if (isStudentAdd)
+               {
+                   Console.WriteLine($"Student is Success Fully Added!");
+               }
+               else
+               {
+                   Console.WriteLine($"Error Occurred - Failed!");
+               }
+   */
             #endregion
 
             #region Update Student
 
             Console.WriteLine("------------- Update Student -------------");
 
-            string updateStudentID = "9";
-            string updateFirtName = "Mike";
-            string updateLastName = "CHOi";
-            string updateEmail = "wcho2@nait.ca";
-           
+            /*   string updateStudentID = "99";
+               string updateFirtName = "Mike";
+               string updateLastName = "CHOi";
+               string updateEmail = "wcho2@nait.ca";
 
-            bool isStudentUpdated = Students.UpdateStudent(IsStringEmptyOrNull(updateStudentID), IsStringEmptyOrNull(updateFirtName), IsStringEmptyOrNull(updateLastName), IsStringEmptyOrNull(updateEmail));
-            if (isStudentUpdated)
-            {
-                Console.WriteLine("Students are successfully Updated!");
-            }
-            else
-            {
-                Console.WriteLine("Failed!");
-            }
+
+               bool isStudentUpdated = Students.UpdateStudent(IsStringEmptyOrNull(updateStudentID), IsStringEmptyOrNull(updateFirtName), IsStringEmptyOrNull(updateLastName), IsStringEmptyOrNull(updateEmail));
+               if (isStudentUpdated)
+               {
+                   Console.WriteLine("Students are successfully Updated!");
+               }
+               else
+               {
+                   Console.WriteLine("Failed!");
+               }*/
             #endregion
 
             #region Delete Student
 
             Console.WriteLine("------------- Delete Student -------------");
 
-            string deleteStudentId = "10";
-            bool isStudentDelete = Students.DeleteStudent(deleteStudentId);
-            if (isStudentDelete)
-            {
-                Console.WriteLine("Students are successfully Deleted!");
-            }
-            else
-            {
-                Console.WriteLine("Failed!");
-            }
+            /*     string deleteStudentId = "99";
+                 bool isStudentDelete = Students.DeleteStudent(deleteStudentId);
+                 if (isStudentDelete)
+                 {
+                     Console.WriteLine("Students are successfully Deleted!");
+                 }
+                 else
+                 {
+                     Console.WriteLine("Failed!");
+                 }*/
             #endregion
 
             #region GetStudent
 
             Console.WriteLine($"------------- Get Student -------------");
-            string getStudentId = "3";
+            /*        string getStudentId = "9";
 
-            string getStudent = Students.GetStudent(getStudentId);
+                    string getStudent = Students.GetStudent(getStudentId);
 
-            Console.WriteLine(getStudent);
-
+                    Console.WriteLine(getStudent);
+        */
 
             #endregion
 
             Console.WriteLine("");
             #region GetStudentsByProgram
 
-            Console.WriteLine("------------- GetStudentsByProgram -------------");
+            /*        Console.WriteLine("------------- GetStudentsByProgram -------------");
 
-            string getStudentByProgramCode = "BAIST";
+                    string getStudentByProgramCode = "BAIST";
 
-            Students.GetStudentsByProgram(getStudentByProgramCode);
+                    Students.GetStudentsByProgram(getStudentByProgramCode);*/
 
             #endregion
 
@@ -123,11 +125,11 @@ namespace DataConnectivity
             #region NorthWind GetCustomersByCountry
 
             //Demonstrtion North Wind
-            Console.WriteLine("Sample Result for United Kingdom");
-            Console.WriteLine("--------- GetCustomersByCountry --------");
+            /*        Console.WriteLine("Sample Result for United Kingdom");
+                    Console.WriteLine("--------- GetCustomersByCountry --------");
 
-            string testGetCustomersByCountry = "UK";
-            NorthWind.GetCustomersByCountry(testGetCustomersByCountry);
+                    string testGetCustomersByCountry = "UK";
+                    NorthWind.GetCustomersByCountry(testGetCustomersByCountry);*/
 
             #endregion
             Console.WriteLine("");
@@ -136,18 +138,48 @@ namespace DataConnectivity
             #region NorthWind GetCategory
             Console.WriteLine("Sample Result for Dairy Products");
             Console.WriteLine("--------- GetCategory --------");
-            int testGetCategory =4;
+            int testGetCategory = 4;
             NorthWind.GetCategory(testGetCategory);
             #endregion
 
             #region Northwind GetProductsByCategory
-            Console.WriteLine("");
-            Console.WriteLine("-");
-            Console.WriteLine("--------- GetProductsByCategory --------");
-            string testGetProductsByCategory = "Dairy Products";
-            NorthWind.GetProductsByCategory(testGetProductsByCategory);
-
+            /*      Console.WriteLine("");
+                  Console.WriteLine("-");
+                  Console.WriteLine("--------- GetProductsByCategory --------");
+                  string testGetProductsByCategory = "Dairy Products";
+                  NorthWind.GetProductsByCategory(testGetProductsByCategory);
+      */
             #endregion
+
+            //Domain.TestStudent t = new Domain.TestStudent();
+            Console.WriteLine("");
+            Console.WriteLine($"-------------------------- TEST --------------------------------");
+            /*    TestStudent testStduent = new TestStudent();
+                testStduent.StudentId = "Test1";
+                testStduent.FirstName = "Mike";
+                testStduent.lastName = "Cho";
+                testStduent.Email = "wcho2@nait.ca";
+                string addStudentProgramCode = "BAIST";
+
+                Console.WriteLine($"Reuslt ===={testStduent.StudentId} ");*/
+
+            TestStudent accepetedStudent = new()
+            { 
+               StudentId= "21",
+                FirstName= "MC",
+                lastName ="CCCD",
+             Email= "wcho2@nait.ca"
+            
+            };
+
+            BCS requestDirector = new BCS();
+            bool isSucess = requestDirector.EnrollStudent(accepetedStudent, "BAIST");
+
+            if (isSucess)
+                Console.WriteLine("Students Are Successfullay Added");
+            else
+                Console.WriteLine("FAILED!!!");
+
 
             Console.ReadLine();
         }
