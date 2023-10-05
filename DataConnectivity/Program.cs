@@ -164,36 +164,81 @@ namespace DataConnectivity
                 Console.WriteLine($"Reuslt ===={testStduent.StudentId} ");*/
             BCS requestDirector = new BCS();
             #region EnrollStudent
-            TestStudent accepetedStudent = new()
-            { 
-               StudentId= "21",
-                FirstName= "MC",
-                lastName ="CCCD",
-             Email= "wcho2@nait.ca"
-            
-            };
+            /*       TestStudent accepetedStudent = new()
+                   {
+                       StudentId = "21",
+                       FirstName = "MC",
+                       lastName = "CCCD",
+                       Email = "wcho2@nait.ca"
 
-         /*
-            bool isEnrolledStudent = requestDirector.EnrollStudent(accepetedStudent, "BAIST");
+                   };*/
 
-            if (isEnrolledStudent)
-                Console.WriteLine("Students Are Successfullay Added");
-            else
-                Console.WriteLine("FAILED!!!");*/
+            /*
+               bool isEnrolledStudent = requestDirector.EnrollStudent(accepetedStudent, "BAIST");
+
+               if (isEnrolledStudent)
+                   Console.WriteLine("Students Are Successfullay Added");
+               else
+                   Console.WriteLine("FAILED!!!");*/
             #endregion
 
             #region CreateProgram
 
-            string createProgramProgramCode = "BAIST21";
-            string createProgramDescription = "THis IS Teststs";
+            /*         string createProgramProgramCode = "BAIST21";
+                     string createProgramDescription = "THis IS Teststs";
 
-            bool isCreatedProgram = requestDirector.CreateProram(createProgramProgramCode, createProgramDescription);
+                     bool isCreatedProgram = requestDirector.CreateProgram(createProgramProgramCode, createProgramDescription);
 
-            if(isCreatedProgram)
-                Console.WriteLine("Program is Successfullay Createded");
-            else
-                Console.WriteLine("FAILED!!!");
+                     if (isCreatedProgram)
+                         Console.WriteLine("Program is Successfullay Createded");
+                     else
+                         Console.WriteLine("FAILED!!!");*/
             #endregion
+
+            #region FindsStudent
+            Console.WriteLine("");
+            Console.WriteLine("\"-------------------------- Find Student --------------------------");
+            string findStudentId = "Test1";
+            string enrolledStudent = requestDirector.FindStudent(findStudentId);
+            Console.WriteLine();
+            Console.WriteLine(enrolledStudent);
+
+            #endregion
+
+            #region ModifyStudent
+            Console.WriteLine("");
+            Console.WriteLine("\"-------------------------- Modify Student --------------------------");
+
+            TestStudent enrolledSuudentUpdate = new()
+            { 
+                 FirstName = "MikkE",
+                 lastName = "ddCCho",
+                 Email = "",
+                 StudentId = "1"            
+            };
+            bool isModified = requestDirector.ModifyStudent(enrolledSuudentUpdate);
+
+            if (isModified)
+                Console.WriteLine($"Student is successfully Updated! ");
+            else
+                Console.WriteLine($"Failed!! ");
+
+            #endregion
+
+            #region RemoveStudent 
+            Console.WriteLine("");
+            Console.WriteLine("\"-------------------------- Remove Student --------------------------");
+
+            string removeStudentId = "Test1";
+            bool isRemoved = requestDirector.RemoveStudent(removeStudentId);
+            if (isRemoved)
+                Console.WriteLine($"Student is successfully Removed! ");
+            else
+                Console.WriteLine($"Failed!! ");
+
+            #endregion
+
+
 
             Console.ReadLine();
         }

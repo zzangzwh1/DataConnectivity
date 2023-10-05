@@ -175,6 +175,7 @@ namespace DataConnectivity
                                         Console.Write($"{reader.GetName(i)}\t");
                                     }
                                 }
+
                                 Console.WriteLine();
                                 while (reader.Read())
                                 {
@@ -236,7 +237,7 @@ namespace DataConnectivity
                     try
                     {
                         command.CommandType = CommandType.StoredProcedure;
-                        command.Parameters.AddWithValue("@ProgramCode", programCode).Size=10;
+                        command.Parameters.AddWithValue("@ProgramCode", programCode).Size = 10;
 
 
                         using (SqlDataReader reader = command.ExecuteReader())
@@ -299,7 +300,7 @@ namespace DataConnectivity
         }
 
 
-    #endregion
+        #endregion
     }
 }
 

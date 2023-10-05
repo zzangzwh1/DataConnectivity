@@ -14,10 +14,10 @@ namespace DataConnectivity.Domain
             TestStudents studentManager = new TestStudents();
             bool isSuccess = studentManager.AddStudent(acceptedStudent, programCode);
 
-            return isSuccess ? true : false;
+            return isSuccess;
           
         }
-        public bool CreateProram(string programCode, string description)
+        public bool CreateProgram(string programCode, string description)
         {
             TestProgram programManager = new TestProgram();
 
@@ -25,5 +25,26 @@ namespace DataConnectivity.Domain
 
             return isSuccess;
         }
+        public string FindStudent(string studentId)
+        {
+            TestStudents studentManager = new TestStudents();
+            string enrolledStudent = studentManager.GetStudent(studentId);
+
+            return enrolledStudent;
+        }
+        public bool ModifyStudent(TestStudent student)
+        {
+            TestStudents enrolledStudent = new TestStudents();
+            bool isModify = enrolledStudent.UpdateStudent(student);
+
+            return isModify;
+        }
+        public bool RemoveStudent(string removeStudentId)
+        {
+            TestStudents removeStudent = new TestStudents();
+            bool isRemoved = removeStudent.DeleteStudent(removeStudentId);
+            return isRemoved;
+        }
+
     }
 }
