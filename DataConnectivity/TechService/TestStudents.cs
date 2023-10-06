@@ -215,24 +215,8 @@ namespace DataConnectivity.TechService
             //   StringBuilder students = new StringBuilder();
           
             List<ProgramTest> activeProgramAndStudents = new List<ProgramTest>();
-            TestStudent student = new TestStudent();
-            student.StudentId = "";
-            //activeProgramAndStudents.Add(student);
-
             TestStudent studentsInfo = new TestStudent();
-            ProgramTest enrollStudent = new ProgramTest();
-          
-/*            
-            studentsInfo.StudentId = "1";
-            studentsInfo.FirstName = "fds";
-            studentsInfo.lastName = "fds";
-            studentsInfo.Email = "fds";
-            ProgramTest tests = new ProgramTest(studentsInfo);
-
-            then add data into it
-            
-            tests.EnrollStudents.lastName = "fdsfds";
-*/
+            ProgramTest enrollStudent = new ProgramTest();  
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
@@ -255,26 +239,51 @@ namespace DataConnectivity.TechService
                                 Console.WriteLine();
 
                                 string s2 = "";
+                                int j = 0;
 
                                 while (reader.Read())
                                 {
+                                    studentsInfo = new TestStudent(); // Create a new object for each row
+
                                     for (int i = 0; i < reader.FieldCount; i++)
                                     {
-                                       
-                                        
-                                        enrollStudent.EnrollStudents.StudentId =  reader[0].ToString();
-                                        /*studentsInfo.FirstName = reader[1].ToString();
-                                        studentsInfo.lastName = reader[2].ToString();
+                                     
 
-                                        studentsInfo.Email = reader[3].ToString();
-                                        studentsInfo = enrollStudent.EnrollStudents;
+                                        string columnValue = reader[i].ToString();
+
+                                        // Check if the value is DBNull.Value or an empty string, and replace it with "NULL"
+                                        if (DBNull.Value.Equals(reader[i]) || string.IsNullOrEmpty(columnValue))
+                                        {
+                                            columnValue = "NULL";
+                                        }
+
+                                        // Depending on the column index, assign the values to the properties of studentsInfo
+                                        switch (i)
+                                        {
+                                            case 0:
+                                                studentsInfo.StudentId = columnValue;
+                                                break;
+                                            case 1:
+                                                studentsInfo.FirstName = columnValue;
+                                                break;
+                                            case 2:
+                                                studentsInfo.lastName = columnValue;
+                                                break;
+                                            case 3:
+                                                studentsInfo.Email = columnValue;
+                                                break;
+                                            case 4:
+                                                enrollStudent.ProgramCode = columnValue;
+                                                break;
 
 
-                                        enrollStudent.ProgramCode = reader[4].ToString();*/
-                                        activeProgramAndStudents.Add(enrollStudent);
+                                        }
                                     }
 
+                                    enrollStudent = new ProgramTest(studentsInfo);
+                                    activeProgramAndStudents.Add(enrollStudent);
                                 }
+
 
                             }
                             else
@@ -297,6 +306,14 @@ namespace DataConnectivity.TechService
                 }
             }
             string s = "";
+
+            foreach(var a in activeProgramAndStudents)
+            {
+                Console.WriteLine($"Result : {a.ProgramCode}");
+                Console.WriteLine($"Reseult  :{a.EnrollStudents.lastName}");
+
+            }
+
             return activeProgramAndStudents;
 
 
