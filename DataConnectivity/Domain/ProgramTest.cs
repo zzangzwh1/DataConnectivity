@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,10 +12,10 @@ namespace DataConnectivity.Domain
     {
         /*  private string _programCode = "";
           private string _description = "";*/
-       // private readonly TestStudent _students;
+        // private readonly TestStudent _students;
 
-        public string ProgramCode { set; get; }
-        public string Description { set; get; }
+        public string ProgramCode { set; get; } = string.Empty;
+        public string Description { set; get; } = string.Empty;
         /*     public string ProgramCode
              {
                  get => _programCode;
@@ -28,14 +29,23 @@ namespace DataConnectivity.Domain
                  set => _description = value;
 
              }*/
-        public TestStudent EnrollStudents { set; get; }
-        public ProgramTest()         
+        private readonly TestStudent _enrollStudents;
+        public TestStudent EnrollStudents
         {
+            get
+            {
+                return _enrollStudents;
+            }
         }
-     /*   {
-            set;
-            get;
-        }*/
-       
+        public ProgramTest(TestStudent students)
+        {
+            this._enrollStudents = students;
+        }
+        public ProgramTest()
+        {
+
+        }
+
+
     }
 }

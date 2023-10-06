@@ -89,6 +89,8 @@ namespace DataConnectivity.TechService
                                     }
 
                                 }
+                                Console.WriteLine();
+                                activeProgram = students.GetStudents(enrollStudents.ProgramCode);
 
                             }
                             else
@@ -110,8 +112,7 @@ namespace DataConnectivity.TechService
 
                 }
             }
-            Console.WriteLine();
-            activeProgram =  students.GetStudents(enrollStudents.ProgramCode);
+         
 
 
             return activeProgram;

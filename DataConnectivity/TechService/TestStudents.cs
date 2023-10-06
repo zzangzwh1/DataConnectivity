@@ -220,6 +220,20 @@ namespace DataConnectivity.TechService
             //activeProgramAndStudents.Add(student);
 
             TestStudent studentsInfo = new TestStudent();
+            ProgramTest enrollStudent = new ProgramTest();
+          
+/*            
+            studentsInfo.StudentId = "1";
+            studentsInfo.FirstName = "fds";
+            studentsInfo.lastName = "fds";
+            studentsInfo.Email = "fds";
+            ProgramTest tests = new ProgramTest(studentsInfo);
+
+            then add data into it
+            
+            tests.EnrollStudents.lastName = "fdsfds";
+*/
+
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
@@ -246,16 +260,17 @@ namespace DataConnectivity.TechService
                                 {
                                     for (int i = 0; i < reader.FieldCount; i++)
                                     {
-                                        ProgramTest enrollStudent = new ProgramTest();
-                                        // Initialize the EnrollStudents property
-                                     
-                                        string result = reader[0].ToString();
-                                        enrollStudent.EnrollStudents.StudentId = result;
-                                        enrollStudent.EnrollStudents.FirstName = reader[1].ToString();
-                                        enrollStudent.EnrollStudents.lastName = reader[2].ToString();
+                                       
+                                        
+                                        enrollStudent.EnrollStudents.StudentId =  reader[0].ToString();
+                                        /*studentsInfo.FirstName = reader[1].ToString();
+                                        studentsInfo.lastName = reader[2].ToString();
 
-                                        enrollStudent.EnrollStudents.Email = reader[3].ToString();
-                                        enrollStudent.ProgramCode = reader[4].ToString();
+                                        studentsInfo.Email = reader[3].ToString();
+                                        studentsInfo = enrollStudent.EnrollStudents;
+
+
+                                        enrollStudent.ProgramCode = reader[4].ToString();*/
                                         activeProgramAndStudents.Add(enrollStudent);
                                     }
 
