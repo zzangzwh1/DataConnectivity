@@ -243,12 +243,12 @@ namespace DataConnectivity
             Console.WriteLine("\"-------------------------- Finds Program --------------------------");
 
 
-            string findProgramCode = "BAIST";
+            string findProgramCode = "BAIST4";
             List<ProgramTest> activeProgram = requestDirector.FindProgram(findProgramCode);
 
             foreach(var values in activeProgram)
             {
-                Console.Write($"{values.EnrollStudents.StudentId} \t {values.EnrollStudents.FirstName} \t {values.EnrollStudents.lastName} \t {values.EnrollStudents.Email} \t {values.ProgramCode} ");
+                Console.Write($"{values.EnrollStudents.StudentId} \t\t\t {values.EnrollStudents.FirstName} \t\t\t {values.EnrollStudents.lastName} \t\t {values.EnrollStudents.Email} \t\t {values.ProgramCode} ");
                 Console.WriteLine();
             }
           

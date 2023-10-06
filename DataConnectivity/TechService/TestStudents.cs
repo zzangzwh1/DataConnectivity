@@ -234,7 +234,7 @@ namespace DataConnectivity.TechService
                             {
                                 for (int i = 0; i < reader.FieldCount; i++)
                                 {
-                                    Console.Write($"{reader.GetName(i)}\t");
+                                    Console.Write($"{reader.GetName(i)}\t\t");
                                 }
                                 Console.WriteLine();
 
@@ -244,10 +244,9 @@ namespace DataConnectivity.TechService
                                 while (reader.Read())
                                 {
                                     studentsInfo = new TestStudent(); // Create a new object for each row
-
+                                    string programCodes = string.Empty; 
                                     for (int i = 0; i < reader.FieldCount; i++)
-                                    {
-                                     
+                                    {                                     
 
                                         string columnValue = reader[i].ToString();
 
@@ -273,17 +272,22 @@ namespace DataConnectivity.TechService
                                                 studentsInfo.Email = columnValue;
                                                 break;
                                             case 4:
-                                                enrollStudent.ProgramCode = columnValue;
+                                                programCodes = columnValue;
                                                 break;
-
-
+                                            
                                         }
+                                      
                                     }
-
                                     enrollStudent = new ProgramTest(studentsInfo);
+                                    enrollStudent.ProgramCode = programCodes;
                                     activeProgramAndStudents.Add(enrollStudent);
-                                }
+                                  
+                             
+                                  //  activeProgramAndStudents.Add
 
+
+                                }
+                           
 
                             }
                             else
@@ -305,14 +309,14 @@ namespace DataConnectivity.TechService
 
                 }
             }
-            string s = "";
+          /*  string s = "";
 
             foreach(var a in activeProgramAndStudents)
             {
                 Console.WriteLine($"Result : {a.ProgramCode}");
                 Console.WriteLine($"Reseult  :{a.EnrollStudents.lastName}");
 
-            }
+            }*/
 
             return activeProgramAndStudents;
 
