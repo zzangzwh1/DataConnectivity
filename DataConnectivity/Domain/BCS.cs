@@ -15,7 +15,7 @@ namespace DataConnectivity.Domain
             bool isSuccess = studentManager.AddStudent(acceptedStudent, programCode);
 
             return isSuccess;
-          
+
         }
         public bool CreateProgram(string programCode, string description)
         {
@@ -44,6 +44,12 @@ namespace DataConnectivity.Domain
             TestStudents removeStudent = new TestStudents();
             bool isRemoved = removeStudent.DeleteStudent(removeStudentId);
             return isRemoved;
+        }
+        public List<ProgramTest> FindProgram(string findProgramCode)
+        {
+            TestProgram findProgram = new TestProgram();
+            List<ProgramTest> activeProgram =  findProgram.GetProgram(findProgramCode);
+            return activeProgram;
         }
 
     }

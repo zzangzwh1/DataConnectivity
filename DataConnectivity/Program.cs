@@ -210,11 +210,11 @@ namespace DataConnectivity
             Console.WriteLine("\"-------------------------- Modify Student --------------------------");
 
             TestStudent enrolledSuudentUpdate = new()
-            { 
-                 FirstName = "MikkE",
-                 lastName = "ddCCho",
-                 Email = "",
-                 StudentId = "1"            
+            {
+                FirstName = "MikkE",
+                lastName = "ddCCho",
+                Email = "",
+                StudentId = "1"
             };
             bool isModified = requestDirector.ModifyStudent(enrolledSuudentUpdate);
 
@@ -238,7 +238,22 @@ namespace DataConnectivity
 
             #endregion
 
+            #region FindsProgram
+            Console.WriteLine("");
+            Console.WriteLine("\"-------------------------- Finds Program --------------------------");
 
+
+            string findProgramCode = "BAIST";
+            List<ProgramTest> activeProgram = requestDirector.FindProgram(findProgramCode);
+
+            foreach(var values in activeProgram)
+            {
+                Console.Write($"{values.EnrollStudents.StudentId} \t {values.EnrollStudents.FirstName} \t {values.EnrollStudents.lastName} \t {values.EnrollStudents.Email} \t {values.ProgramCode} ");
+                Console.WriteLine();
+            }
+          
+
+            #endregion
 
             Console.ReadLine();
         }

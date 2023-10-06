@@ -126,7 +126,7 @@ namespace DataConnectivity.TechService
         #region UpdateStudent
         public bool UpdateStudent(TestStudent student)
         {
-            if (student.StudentId == "" )
+            if (student.StudentId == "")
                 student.StudentId = null;
             if (student.FirstName == "")
                 student.FirstName = null;
@@ -203,6 +203,88 @@ namespace DataConnectivity.TechService
                 }
             }
             return true;
+
+        }
+
+        #endregion
+
+        #region GetStudents
+
+        public List<ProgramTest> GetStudents(string programCode)
+        {
+            //   StringBuilder students = new StringBuilder();
+          
+            List<ProgramTest> activeProgramAndStudents = new List<ProgramTest>();
+            TestStudent student = new TestStudent();
+            student.StudentId = "";
+            //activeProgramAndStudents.Add(student);
+
+            TestStudent studentsInfo = new TestStudent();
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                using (SqlCommand command = new SqlCommand("GetStudentsByProgram", conn))
+                {
+                    try
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@ProgramCode", programCode).Size = 10;
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.HasRows)
+                            {
+                                for (int i = 0; i < reader.FieldCount; i++)
+                                {
+                                    Console.Write($"{reader.GetName(i)}\t");
+                                }
+                                Console.WriteLine();
+
+                                string s2 = "";
+
+                                while (reader.Read())
+                                {
+                                    for (int i = 0; i < reader.FieldCount; i++)
+                                    {
+                                        ProgramTest enrollStudent = new ProgramTest();
+                                        // Initialize the EnrollStudents property
+                                     
+                                        string result = reader[0].ToString();
+                                        enrollStudent.EnrollStudents.StudentId = result;
+                                        enrollStudent.EnrollStudents.FirstName = reader[1].ToString();
+                                        enrollStudent.EnrollStudents.lastName = reader[2].ToString();
+
+                                        enrollStudent.EnrollStudents.Email = reader[3].ToString();
+                                        enrollStudent.ProgramCode = reader[4].ToString();
+                                        activeProgramAndStudents.Add(enrollStudent);
+                                    }
+
+                                }
+
+                            }
+                            else
+                            {
+                                Console.WriteLine("No data Found.");
+
+                            }
+                        }
+
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Error Occurred - GetProgram : {ex.Message}");
+                    }
+                    finally
+                    {
+                        conn.Close();
+                    }
+
+                }
+            }
+            string s = "";
+            return activeProgramAndStudents;
+
+
 
         }
 
