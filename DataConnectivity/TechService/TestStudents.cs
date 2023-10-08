@@ -13,9 +13,19 @@ namespace DataConnectivity.TechService
     {
         public static string connectionString = @"Persist Security Info=False; Server=dev1.baist.ca; Database=wcho2; User Id=wcho2; password=Whdnjsgur1!; ";
         #region AddStudent
-        public bool AddStudent(Domain.TestStudent acceptedStudent, string programCode)
+        public bool AddStudent(TestStudent acceptedStudent, string? programCode)
         {
-            bool isSucces = true;
+            if (string.IsNullOrEmpty(acceptedStudent.StudentId))
+                acceptedStudent.StudentId = null;
+            if (string.IsNullOrEmpty(acceptedStudent.FirstName))
+                acceptedStudent.FirstName = null;
+            if (string.IsNullOrEmpty(acceptedStudent.lastName))
+                acceptedStudent.lastName = null;
+            if (string.IsNullOrEmpty(acceptedStudent.Email))
+                acceptedStudent.Email = null;
+            if (string.IsNullOrEmpty(programCode))
+                programCode = null;
+
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
@@ -36,7 +46,7 @@ namespace DataConnectivity.TechService
                     catch (Exception ex)
                     {
                         Console.WriteLine($"Error - Occurred - {ex.Message}");
-                        isSucces = false;
+                        return false;
                     }
                     finally
                     {
@@ -45,17 +55,20 @@ namespace DataConnectivity.TechService
                 }
 
             }
-            return isSucces;
+            return true;
         }
         #endregion
 
         #region GetStudent
-        public string GetStudent(string? studentId)
+        public ProgramTest GetStudent(string? studentId)
         {
             if (studentId == string.Empty)
                 studentId = null;
 
-            StringBuilder enrolledStudent = new StringBuilder();
+        //    StringBuilder enrolledStudent = new StringBuilder();
+            ProgramTest enrollStudent = new ProgramTest();
+            TestStudent student = new TestStudent();
+            string columnValue = "";
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
@@ -88,21 +101,45 @@ namespace DataConnectivity.TechService
                                 }
                                 while (reader.Read())
                                 {
+                                    string? programCodes = "";
                                     for (int i = 0; i < reader.FieldCount; i++)
                                     {
+                                        columnValue = reader[i].ToString();
                                         if (reader[i] == DBNull.Value || reader[i].ToString() == string.Empty)
                                         {
-                                            enrolledStudent.Append("NULL\t");
+                                       
+                                            columnValue = "NULL";
                                         }
-                                        enrolledStudent.Append(reader[i].ToString());
-                                        enrolledStudent.Append("\t\t");
+                                      
+                                        switch (i)
+                                        {
+                                            case 0:
+                                                student.StudentId = columnValue;
+                                                break;
+                                            case 1:
+                                                student.FirstName = columnValue;
+                                                break;
+                                            case 2:
+                                                student.lastName = columnValue;
+                                                break;
+                                            case 3:
+                                                student.Email = columnValue;
+                                                break;
+                                            case 4:
+                                                programCodes = columnValue;
+                                                break;
+
+                                        }
 
                                     }
+                                    string s = "";
+                                    enrollStudent = new ProgramTest(student);
+                                    enrollStudent.ProgramCode = programCodes;
                                 }
                             }
                             else
                             {
-                                enrolledStudent.Append($"There are No Student exists with that student ID try other Student ID");
+                                Console.WriteLine($"There are No Student exists with that student ID try other Student ID");
                             }
 
 
@@ -118,7 +155,7 @@ namespace DataConnectivity.TechService
                     }
                 }
             }
-            return enrolledStudent.ToString();
+            return enrollStudent;
         }
 
         #endregion
@@ -213,10 +250,10 @@ namespace DataConnectivity.TechService
         public List<ProgramTest> GetStudents(string programCode)
         {
             //   StringBuilder students = new StringBuilder();
-          
+
             List<ProgramTest> activeProgramAndStudents = new List<ProgramTest>();
             TestStudent studentsInfo = new TestStudent();
-            ProgramTest enrollStudent = new ProgramTest();  
+            ProgramTest enrollStudent = new ProgramTest();
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
@@ -234,26 +271,27 @@ namespace DataConnectivity.TechService
                             {
                                 for (int i = 0; i < reader.FieldCount; i++)
                                 {
+                                    if (reader.FieldCount-2 == i)
+                                        Console.Write($"{reader.GetName(i)}\t\t\t\t");
+                                    else
                                     Console.Write($"{reader.GetName(i)}\t\t");
                                 }
                                 Console.WriteLine();
 
-                                string s2 = "";
-                                int j = 0;
-
                                 while (reader.Read())
                                 {
                                     studentsInfo = new TestStudent(); // Create a new object for each row
-                                    string programCodes = string.Empty; 
+                                    string programCodes = string.Empty;
                                     for (int i = 0; i < reader.FieldCount; i++)
-                                    {                                     
+                                    {
 
                                         string columnValue = reader[i].ToString();
+                                        //string result =
 
                                         // Check if the value is DBNull.Value or an empty string, and replace it with "NULL"
                                         if (DBNull.Value.Equals(reader[i]) || string.IsNullOrEmpty(columnValue))
                                         {
-                                            columnValue = "NULL";
+                                            columnValue = "NULL\t";
                                         }
 
                                         // Depending on the column index, assign the values to the properties of studentsInfo
@@ -274,20 +312,20 @@ namespace DataConnectivity.TechService
                                             case 4:
                                                 programCodes = columnValue;
                                                 break;
-                                            
+
                                         }
-                                      
+
                                     }
                                     enrollStudent = new ProgramTest(studentsInfo);
                                     enrollStudent.ProgramCode = programCodes;
                                     activeProgramAndStudents.Add(enrollStudent);
-                                  
-                             
-                                  //  activeProgramAndStudents.Add
+
+
+                                    //  activeProgramAndStudents.Add
 
 
                                 }
-                           
+
 
                             }
                             else
@@ -309,14 +347,6 @@ namespace DataConnectivity.TechService
 
                 }
             }
-          /*  string s = "";
-
-            foreach(var a in activeProgramAndStudents)
-            {
-                Console.WriteLine($"Result : {a.ProgramCode}");
-                Console.WriteLine($"Reseult  :{a.EnrollStudents.lastName}");
-
-            }*/
 
             return activeProgramAndStudents;
 
@@ -326,7 +356,9 @@ namespace DataConnectivity.TechService
 
         #endregion
 
+
     }
+
 
 
 

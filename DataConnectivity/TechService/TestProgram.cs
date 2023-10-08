@@ -13,8 +13,17 @@ namespace DataConnectivity.TechService
     internal class TestProgram
     {
         #region AddProgram
-        public bool AddProgram(string programCode, string description)
+        public bool AddProgram(string? programCode, string? description)
         {
+            if (string.IsNullOrEmpty(programCode))
+            {
+                programCode = null;
+            }
+            if (string.IsNullOrEmpty(description))
+            {
+                description = null;
+            }
+
             using (SqlConnection conn = new SqlConnection(TestStudents.connectionString))
             {
                 conn.Open();
@@ -71,6 +80,7 @@ namespace DataConnectivity.TechService
                             {
                                 for (int i = 0; i < reader.FieldCount; i++)
                                 {
+                            
                                     Console.Write($"{reader.GetName(i)}\t");
                                 }
                                 Console.WriteLine();

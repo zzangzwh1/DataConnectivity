@@ -25,10 +25,10 @@ namespace DataConnectivity.Domain
 
             return isSuccess;
         }
-        public string FindStudent(string studentId)
+        public ProgramTest FindStudent(string studentId)
         {
             TestStudents studentManager = new TestStudents();
-            string enrolledStudent = studentManager.GetStudent(studentId);
+            ProgramTest enrolledStudent = studentManager.GetStudent(studentId);
 
             return enrolledStudent;
         }

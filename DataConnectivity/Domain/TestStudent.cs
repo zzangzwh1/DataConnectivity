@@ -9,12 +9,12 @@ namespace DataConnectivity.Domain
     internal class TestStudent
     {
         // _CamelCase for member field
-        private string _studentId = string.Empty;
-        private string _firstName = "";       
+        private string? _studentId = string.Empty;
+        private string? _firstName = "";       
      
 
 
-        public string StudentId  //pascal case
+        public string? StudentId  //pascal case
         {
             get
             {
@@ -27,13 +27,13 @@ namespace DataConnectivity.Domain
 
         }
         //Expression-Bodied Property Assessor
-        public string FirstName 
+        public string? FirstName 
         {
             get => _firstName; // implementation can be made up of only a single statement
             set => _firstName = value;
         }
         // auto-impletemented property . no logic in get /set
-        public string lastName { get; set; } = "";
+        public string? lastName { get; set; } = "";
         public string? Email { get; set; }
 
         //Constructor

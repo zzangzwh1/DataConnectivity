@@ -10,12 +10,10 @@ namespace DataConnectivity.Domain
 {
     internal class ProgramTest
     {
-        /*  private string _programCode = "";
-          private string _description = "";*/
-        // private readonly TestStudent _students;
+ 
 
-        public string ProgramCode { set; get; } = string.Empty;
-        public string Description { set; get; } = string.Empty;
+        public string? ProgramCode { set; get; } = string.Empty;
+        public string? Description { set; get; } = string.Empty;
      
         private readonly TestStudent _enrollStudents;
         public TestStudent EnrollStudents
