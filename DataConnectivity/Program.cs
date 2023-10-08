@@ -199,7 +199,7 @@ namespace DataConnectivity
             #region FindsStudent
             Console.WriteLine("");
             Console.WriteLine("\"-------------------------- Find Student --------------------------");
-            string findStudentId = "1";
+            string findStudentId = "101";
             ProgramTest enrolledStudent = requestDirector.FindStudent(findStudentId);
             Console.WriteLine();
             Console.WriteLine($"{enrolledStudent.EnrollStudents.StudentId} \t\t {enrolledStudent.EnrollStudents.FirstName} \t\t{enrolledStudent.EnrollStudents.lastName} \t\t{enrolledStudent.EnrollStudents.Email} \t\t\t{enrolledStudent.ProgramCode}");

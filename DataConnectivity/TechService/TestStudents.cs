@@ -68,7 +68,7 @@ namespace DataConnectivity.TechService
         //    StringBuilder enrolledStudent = new StringBuilder();
             ProgramTest enrollStudent = new ProgramTest();
             TestStudent student = new TestStudent();
-            string columnValue = "";
+        
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
@@ -104,13 +104,8 @@ namespace DataConnectivity.TechService
                                     string? programCodes = "";
                                     for (int i = 0; i < reader.FieldCount; i++)
                                     {
-                                        columnValue = reader[i].ToString();
-                                        if (reader[i] == DBNull.Value || reader[i].ToString() == string.Empty)
-                                        {
-                                       
-                                            columnValue = "NULL";
-                                        }
-                                      
+                                        string columnValue = reader.IsDBNull(i) ? "NULL" : reader.GetString(i);
+
                                         switch (i)
                                         {
                                             case 0:
@@ -132,7 +127,7 @@ namespace DataConnectivity.TechService
                                         }
 
                                     }
-                                    string s = "";
+                                 
                                     enrollStudent = new ProgramTest(student);
                                     enrollStudent.ProgramCode = programCodes;
                                 }
@@ -319,9 +314,6 @@ namespace DataConnectivity.TechService
                                     enrollStudent = new ProgramTest(studentsInfo);
                                     enrollStudent.ProgramCode = programCodes;
                                     activeProgramAndStudents.Add(enrollStudent);
-
-
-                                    //  activeProgramAndStudents.Add
 
 
                                 }
