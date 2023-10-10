@@ -257,14 +257,6 @@ namespace DataConnectivity
 
             #endregion
 
-            /*    TestStudent testStduent = new TestStudent();
-                testStduent.StudentId = "Test1";
-                testStduent.FirstName = "Mike";
-                testStduent.lastName = "Cho";
-                testStduent.Email = "wcho2@nait.ca";
-                string addStudentProgramCode = "BAIST";
-
-                Console.WriteLine($"Reuslt ===={testStduent.StudentId} ");*/
 
 
 
