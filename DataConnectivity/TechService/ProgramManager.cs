@@ -10,7 +10,7 @@ using DataConnectivity.Domain;
 
 namespace DataConnectivity.TechService
 {
-    internal class TestProgram
+    internal class ProgramManager
     {
         #region AddProgram
         public bool AddProgram(string? programCode, string? description)
@@ -24,7 +24,7 @@ namespace DataConnectivity.TechService
                 description = null;
             }
 
-            using (SqlConnection conn = new SqlConnection(TestStudents.connectionString))
+            using (SqlConnection conn = new SqlConnection(StudentManager.connectionString))
             {
                 conn.Open();
                 using (SqlCommand command = new SqlCommand("AddProgram", conn))
@@ -57,14 +57,14 @@ namespace DataConnectivity.TechService
         #endregion
 
         #region GetProgram
-        public List<ProgramTest> GetProgram(string programCode)
+        public List<Programs> GetProgram(string programCode)
         {
             /*TestStudent students = new TestStudent();*/
-            ProgramTest enrollStudents = new ProgramTest();
-            TestStudents students = new TestStudents();
-            List<ProgramTest> activeProgram = new List<ProgramTest>();
+            Programs enrollStudents = new Programs();
+            StudentManager students = new StudentManager();
+            List<Programs> activeProgram = new List<Programs>();
 
-            using (SqlConnection conn = new SqlConnection(TestStudents.connectionString))
+            using (SqlConnection conn = new SqlConnection(StudentManager.connectionString))
             {
                 conn.Open();
                 using (SqlCommand command = new SqlCommand("GetProgram", conn))
@@ -99,6 +99,7 @@ namespace DataConnectivity.TechService
                                     }
 
                                 }
+                                Console.WriteLine();
                                 Console.WriteLine();
                                 activeProgram = students.GetStudents(enrollStudents.ProgramCode);
 

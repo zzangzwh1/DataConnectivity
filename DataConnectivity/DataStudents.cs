@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DataConnectivity
 {
-    public class Students
+    public class DataStudents
     {
         #region AddStudent
         public static bool AddStudent(string? studentId, string? firstName, string? lastName, string? email, string? programCode)
@@ -27,7 +27,7 @@ namespace DataConnectivity
                 programCode = null;
 
 
-            using (SqlConnection connection = new SqlConnection(Programs.connectionString))
+            using (SqlConnection connection = new SqlConnection(DataPrograms.connectionString))
             {
                 connection.Open();
                 using (SqlCommand command = new SqlCommand("AddStudent", connection))
@@ -70,7 +70,7 @@ namespace DataConnectivity
         public static bool UpdateStudent(string? studentId, string? firstName, string? lastName, string? email)
         {
 
-            using (SqlConnection conn = new SqlConnection(Programs.connectionString))
+            using (SqlConnection conn = new SqlConnection(DataPrograms.connectionString))
             {
                 conn.Open();
                 using (SqlCommand command = new SqlCommand("UpdateStudent", conn))
@@ -110,7 +110,7 @@ namespace DataConnectivity
             if (studentId == "")
                 studentId = null;
 
-            using (SqlConnection conn = new SqlConnection(Programs.connectionString))
+            using (SqlConnection conn = new SqlConnection(DataPrograms.connectionString))
             {
                 conn.Open();
                 using (SqlCommand command = new SqlCommand("DeleteStudent", conn))
@@ -148,7 +148,7 @@ namespace DataConnectivity
                 studentID = null;
 
             StringBuilder strings = new StringBuilder();
-            using (SqlConnection connection = new SqlConnection(Programs.connectionString))
+            using (SqlConnection connection = new SqlConnection(DataPrograms.connectionString))
             {
                 connection.Open();
                 using (SqlCommand command = new SqlCommand("GetStudent", connection))
@@ -229,7 +229,7 @@ namespace DataConnectivity
             }
             StringBuilder sBuilder = new StringBuilder();
 
-            using (SqlConnection conn = new SqlConnection(Programs.connectionString))
+            using (SqlConnection conn = new SqlConnection(DataPrograms.connectionString))
             {
                 conn.Open();
                 using (SqlCommand command = new SqlCommand("GetStudentsByProgram", conn))

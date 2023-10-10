@@ -8,26 +8,26 @@ using System.Threading.Tasks;
 
 namespace DataConnectivity.Domain
 {
-    internal class ProgramTest
+    internal class Programs
     {
  
 
         public string? ProgramCode { set; get; } = string.Empty;
         public string? Description { set; get; } = string.Empty;
      
-        private readonly TestStudent _enrollStudents;
-        public TestStudent EnrollStudents
+        private readonly Students _enrollStudents;
+        public Students EnrollStudents
         {
             get
             {
                 return _enrollStudents;
             }
         }
-        public ProgramTest(TestStudent students)
+        public Programs(Students students)
         {
             this._enrollStudents = students;
         }
-        public ProgramTest()
+        public Programs()
         {
 
         }

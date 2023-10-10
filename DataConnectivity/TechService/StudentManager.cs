@@ -9,11 +9,11 @@ using DataConnectivity.Domain;
 
 namespace DataConnectivity.TechService
 {
-    internal class TestStudents
+    internal class StudentManager
     {
         public static string connectionString = @"Persist Security Info=False; Server=dev1.baist.ca; Database=wcho2; User Id=wcho2; password=Whdnjsgur1!; ";
         #region AddStudent
-        public bool AddStudent(TestStudent acceptedStudent, string? programCode)
+        public bool AddStudent(Students acceptedStudent, string? programCode)
         {
             if (string.IsNullOrEmpty(acceptedStudent.StudentId))
                 acceptedStudent.StudentId = null;
@@ -60,14 +60,14 @@ namespace DataConnectivity.TechService
         #endregion
 
         #region GetStudent
-        public ProgramTest GetStudent(string? studentId)
+        public Programs GetStudent(string? studentId)
         {
             if (studentId == string.Empty)
                 studentId = null;
 
         //    StringBuilder enrolledStudent = new StringBuilder();
-            ProgramTest enrollStudent = new ProgramTest();
-            TestStudent student = new TestStudent();
+            Programs enrollStudent = new Programs();
+            Students student = new Students();
         
 
             using (SqlConnection conn = new SqlConnection(connectionString))
@@ -128,7 +128,7 @@ namespace DataConnectivity.TechService
 
                                     }
                                  
-                                    enrollStudent = new ProgramTest(student);
+                                    enrollStudent = new Programs(student);
                                     enrollStudent.ProgramCode = programCodes;
                                 }
                             }
@@ -156,7 +156,7 @@ namespace DataConnectivity.TechService
         #endregion
 
         #region UpdateStudent
-        public bool UpdateStudent(TestStudent student)
+        public bool UpdateStudent(Students student)
         {
             if (student.StudentId == "")
                 student.StudentId = null;
@@ -242,13 +242,13 @@ namespace DataConnectivity.TechService
 
         #region GetStudents
 
-        public List<ProgramTest> GetStudents(string programCode)
+        public List<Programs> GetStudents(string programCode)
         {
             //   StringBuilder students = new StringBuilder();
 
-            List<ProgramTest> activeProgramAndStudents = new List<ProgramTest>();
-            TestStudent studentsInfo = new TestStudent();
-            ProgramTest enrollStudent = new ProgramTest();
+            List<Programs> activeProgramAndStudents = new List<Programs>();
+            Students studentsInfo = new Students();
+            Programs enrollStudent = new Programs();
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
@@ -275,7 +275,7 @@ namespace DataConnectivity.TechService
 
                                 while (reader.Read())
                                 {
-                                    studentsInfo = new TestStudent(); // Create a new object for each row
+                                    studentsInfo = new Students(); // Create a new object for each row
                                     string programCodes = string.Empty;
                                     for (int i = 0; i < reader.FieldCount; i++)
                                     {
@@ -311,7 +311,7 @@ namespace DataConnectivity.TechService
                                         }
 
                                     }
-                                    enrollStudent = new ProgramTest(studentsInfo);
+                                    enrollStudent = new Programs(studentsInfo);
                                     enrollStudent.ProgramCode = programCodes;
                                     activeProgramAndStudents.Add(enrollStudent);
 

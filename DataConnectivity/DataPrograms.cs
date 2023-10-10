@@ -9,7 +9,7 @@ using Microsoft.Data.SqlClient;
 
 namespace DataConnectivity
 {
-    public class Programs
+    public class DataPrograms
     {
         public static string connectionString = @"Persist Security Info=False; Server= dev1.baist.ca; Database=wcho2; User ID=wcho2; Password=Whdnjsgur1!;";
 
