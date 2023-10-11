@@ -248,7 +248,7 @@ namespace DataConnectivity.TechService
 
         #region GetStudents
 
-        public List<Domain.Program> GetStudents(string programCode)
+        public Domain.Program GetStudents(string programCode)
         {
             //   StringBuilder students = new StringBuilder();
 
@@ -317,12 +317,14 @@ namespace DataConnectivity.TechService
                                                 break;
 
                                         }
-                                        enrollStudent.EnrolledStudents.Add(studentsInfo);
-                                        enrollStudent.ProgramCode = programCodes;
 
-                                        program.Add(enrollStudent);
+                                  
+
+                                        //program.Add(enrollStudent);
 
                                     }
+                                    enrollStudent.EnrolledStudents.Add(studentsInfo);
+                                    enrollStudent.ProgramCode = programCodes;
 
 
 
@@ -351,7 +353,7 @@ namespace DataConnectivity.TechService
                 }
             }
 
-            return program;
+            return enrollStudent;
 
 
 

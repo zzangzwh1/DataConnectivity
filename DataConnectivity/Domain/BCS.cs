@@ -47,10 +47,10 @@ namespace DataConnectivity.Domain
             bool success = removeStudent.DeleteStudent(removeStudentId);
             return success;
         }
-        public List<Program> FindProgram(string findProgramCode)
+        public Program FindProgram(string findProgramCode)
         {
             Programs findProgram = new Programs();
-            List<Program> activeProgram =  findProgram.GetProgram(findProgramCode);
+            Program activeProgram =  findProgram.GetProgram(findProgramCode);
            
             return activeProgram;
         }

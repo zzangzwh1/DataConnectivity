@@ -57,12 +57,12 @@ namespace DataConnectivity.TechService
         #endregion
 
         #region GetProgram
-        public List<Domain.Program> GetProgram(string programCode)
+        public Domain.Program GetProgram(string programCode)
         {
             /*TestStudent students = new TestStudent();*/
             Domain.Program enrollStudents = new Domain.Program();
             Students students = new Students();
-            List<Domain.Program> activeProgram = new List<Domain.Program>();
+            Domain.Program activeProgram = new Domain.Program();
             using (SqlConnection conn = new SqlConnection(Students.connectionString))
             {
                 conn.Open();

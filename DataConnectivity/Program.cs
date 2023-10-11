@@ -295,7 +295,11 @@ namespace DataConnectivity
             string findProgramCode = "BAIST";
             Domain.Program activeProgram = requestDirector.FindProgram(findProgramCode);
 
-            Console.WriteLine(activeProgram.)
+            foreach(var programs in activeProgram.EnrolledStudents)
+            {
+                Console.WriteLine($"{programs.StudentId} \t\t\t {programs.FirstName} \t\t\t {programs.lastName} \t\t\t {programs.Email} \t\t\t{activeProgram.ProgramCode}");
+            }
+      
          /*   foreach(var a in activeProgram)
             {
                 forea
