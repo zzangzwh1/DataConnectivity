@@ -9,46 +9,49 @@ namespace DataConnectivity.Domain
 {
     internal class BCS
     {
-        public bool EnrollStudent(Students acceptedStudent, string programCode)
+        public bool EnrollStudent(Student acceptedStudent, string programCode)
         {
-            StudentManager students = new StudentManager();
-            bool isSuccess = students.AddStudent(acceptedStudent, programCode);
+            Students students = new Students();
+            bool success = students.AddStudent(acceptedStudent, programCode);
 
-            return isSuccess;
+            return success;
 
         }
         public bool CreateProgram(string programCode, string description)
         {
-            ProgramManager programs = new ProgramManager();
+            Programs programs = new Programs();
 
-            bool isSuccess = programs.AddProgram(programCode, description);
+            bool success = programs.AddProgram(programCode, description);
 
-            return isSuccess;
+            return success;
         }
-        public Programs FindStudent(string studentId)
+        public Program FindStudent(string studentId)
         {
-            StudentManager students = new StudentManager();
-            Programs enrolledStudent = students.GetStudent(studentId);
+            Students students = new Students();
+            Program enrolledStudent = students.GetStudent(studentId);
+            
 
             return enrolledStudent;
         }
-        public bool ModifyStudent(Students student)
+        public bool ModifyStudent(Program student)
         {
-            StudentManager enrolledStudent = new StudentManager();
+            Students enrolledStudent = new Students();
             bool isModify = enrolledStudent.UpdateStudent(student);
-
             return isModify;
+
+
         }
         public bool RemoveStudent(string removeStudentId)
         {
-            StudentManager removeStudent = new StudentManager();
-            bool isRemoved = removeStudent.DeleteStudent(removeStudentId);
-            return isRemoved;
+            Students removeStudent = new Students();
+            bool success = removeStudent.DeleteStudent(removeStudentId);
+            return success;
         }
-        public List<Programs> FindProgram(string findProgramCode)
+        public List<Program> FindProgram(string findProgramCode)
         {
-            ProgramManager findProgram = new ProgramManager();
-            List<Programs> activeProgram =  findProgram.GetProgram(findProgramCode);
+            Programs findProgram = new Programs();
+            List<Program> activeProgram =  findProgram.GetProgram(findProgramCode);
+           
             return activeProgram;
         }
 

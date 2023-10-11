@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataConnectivity.Domain
 {
-    internal class Students
+    internal class Student
     {
         // _CamelCase for member field
         private string? _studentId = string.Empty;
@@ -37,7 +37,7 @@ namespace DataConnectivity.Domain
         public string? Email { get; set; }
 
         //Constructor
-        public Students()
+        public Student()
         {
 
         }

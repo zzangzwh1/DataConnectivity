@@ -9,11 +9,11 @@ using DataConnectivity.Domain;
 
 namespace DataConnectivity.TechService
 {
-    internal class StudentManager
+    internal class Students
     {
         public static string connectionString = @"Persist Security Info=False; Server=dev1.baist.ca; Database=wcho2; User Id=wcho2; password=Whdnjsgur1!; ";
         #region AddStudent
-        public bool AddStudent(Students acceptedStudent, string? programCode)
+        public bool AddStudent(Student acceptedStudent, string? programCode)
         {
             if (string.IsNullOrEmpty(acceptedStudent.StudentId))
                 acceptedStudent.StudentId = null;
@@ -60,15 +60,15 @@ namespace DataConnectivity.TechService
         #endregion
 
         #region GetStudent
-        public Programs GetStudent(string? studentId)
+        public Domain.Program GetStudent(string? studentId)
         {
             if (studentId == string.Empty)
                 studentId = null;
 
-        //    StringBuilder enrolledStudent = new StringBuilder();
-            Programs enrollStudent = new Programs();
-            Students student = new Students();
-        
+            //    StringBuilder enrolledStudent = new StringBuilder();
+            Domain.Program enrollStudent = new Domain.Program();
+            Student student = new Student();
+
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
@@ -127,8 +127,8 @@ namespace DataConnectivity.TechService
                                         }
 
                                     }
-                                 
-                                    enrollStudent = new Programs(student);
+
+                                    enrollStudent.EnrolledStudents.Add(student);
                                     enrollStudent.ProgramCode = programCodes;
                                 }
                             }
@@ -156,17 +156,23 @@ namespace DataConnectivity.TechService
         #endregion
 
         #region UpdateStudent
-        public bool UpdateStudent(Students student)
+        public bool UpdateStudent(Domain.Program students)
         {
-            if (student.StudentId == "")
-                student.StudentId = null;
-            if (student.FirstName == "")
-                student.FirstName = null;
-            if (student.lastName == "")
-                student.lastName = null;
-            if (student.Email == "")
-                student.Email = null;
 
+            string? studentId = "";
+            string? firstName = "";
+            string? lastName = "";
+            string? email = "";
+
+
+            foreach (var student in students.EnrolledStudents)
+            {
+                studentId = student.StudentId;
+                firstName = student.FirstName;
+                lastName = student.lastName;
+                email = student.Email;
+
+            }
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
@@ -176,11 +182,11 @@ namespace DataConnectivity.TechService
                     command.CommandType = CommandType.StoredProcedure;
                     try
                     {
-                        command.Parameters.AddWithValue("@StudentID", student.StudentId).Size = 10;
-                        command.Parameters.AddWithValue("@FirstName", student.FirstName).Size = 25;
-                        command.Parameters.AddWithValue("@LastName", student.lastName).Size = 25;
+                        command.Parameters.AddWithValue("@StudentID", studentId).Size = 10;
+                        command.Parameters.AddWithValue("@FirstName", firstName).Size = 25;
+                        command.Parameters.AddWithValue("@LastName", lastName).Size = 25;
 
-                        command.Parameters.AddWithValue("@Email", student.Email).Size = 50;
+                        command.Parameters.AddWithValue("@Email", email).Size = 50;
                         command.ExecuteNonQuery();
 
                     }
@@ -242,13 +248,15 @@ namespace DataConnectivity.TechService
 
         #region GetStudents
 
-        public List<Programs> GetStudents(string programCode)
+        public List<Domain.Program> GetStudents(string programCode)
         {
             //   StringBuilder students = new StringBuilder();
 
-            List<Programs> activeProgramAndStudents = new List<Programs>();
-            Students studentsInfo = new Students();
-            Programs enrollStudent = new Programs();
+         //  List<List<Student>> activeProgramAndStudents = new List<List<Student>>();
+            Student studentsInfo = new Student();
+            Domain.Program enrollStudent = new Domain.Program();
+            List<Domain.Program> program = new List<Domain.Program>();
+
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
@@ -266,16 +274,16 @@ namespace DataConnectivity.TechService
                             {
                                 for (int i = 0; i < reader.FieldCount; i++)
                                 {
-                                    if (reader.FieldCount-2 == i)
+                                    if (reader.FieldCount - 2 == i)
                                         Console.Write($"{reader.GetName(i)}\t\t\t\t");
                                     else
-                                    Console.Write($"{reader.GetName(i)}\t\t");
+                                        Console.Write($"{reader.GetName(i)}\t\t");
                                 }
                                 Console.WriteLine();
 
                                 while (reader.Read())
                                 {
-                                    studentsInfo = new Students(); // Create a new object for each row
+                                    studentsInfo = new Student(); // Create a new object for each row
                                     string programCodes = string.Empty;
                                     for (int i = 0; i < reader.FieldCount; i++)
                                     {
@@ -309,11 +317,14 @@ namespace DataConnectivity.TechService
                                                 break;
 
                                         }
+                                        enrollStudent.EnrolledStudents.Add(studentsInfo);
+                                        enrollStudent.ProgramCode = programCodes;
+
+                                        program.Add(enrollStudent);
 
                                     }
-                                    enrollStudent = new Programs(studentsInfo);
-                                    enrollStudent.ProgramCode = programCodes;
-                                    activeProgramAndStudents.Add(enrollStudent);
+
+
 
 
                                 }
@@ -340,7 +351,7 @@ namespace DataConnectivity.TechService
                 }
             }
 
-            return activeProgramAndStudents;
+            return program;
 
 
 
