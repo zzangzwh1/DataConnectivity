@@ -11,7 +11,7 @@ namespace DataConnectivity
     {
         static void Main(string[] args)
         {
-    
+
 
 
             #region NorthWind GetCustomersByCountry
@@ -55,8 +55,8 @@ namespace DataConnectivity
             #region CreateProgram
             Console.WriteLine("");
             Console.WriteLine($"-------------------------- Create Program --------------------------------");
-            string createProgramProgramCode = "Demo14";
-            string createProgramDescription = "DEMO 14";
+            string createProgramProgramCode = "Demo114";
+            string createProgramDescription = "Demo114";
 
             bool confirmation = requestDirector.CreateProgram(createProgramProgramCode, createProgramDescription);
 
@@ -70,9 +70,9 @@ namespace DataConnectivity
             #region EnrollStudent
             Console.WriteLine("");
             Console.WriteLine($"-------------------------- Enroll Student --------------------------------");
-            string accepetedStudentStudentId = "103";
-            string accepetedStudentFirstName = "Mike";
-            string accepetedStudentLastName = "cho";
+            string accepetedStudentStudentId = "7";
+            string accepetedStudentFirstName = "Jade";
+            string accepetedStudentLastName = "james";
             string accepetedStudentEmail = "wcho2@nait.ca";
 
             Student accepetedStudent = new()
@@ -86,9 +86,9 @@ namespace DataConnectivity
 
             string enrollStudentProgramCode = "BAIST";
 
-            bool enrollCirformation = requestDirector.EnrollStudent(accepetedStudent, enrollStudentProgramCode);
+            confirmation = requestDirector.EnrollStudent(accepetedStudent, enrollStudentProgramCode);
 
-            if (enrollCirformation)
+            if (confirmation)
                 Console.WriteLine("Students Are Successfullay Added");
             else
                 Console.WriteLine("FAILED!!!");
@@ -97,18 +97,18 @@ namespace DataConnectivity
             #region FindsStudent
             Console.WriteLine("");
             Console.WriteLine("\"-------------------------- Find Student --------------------------");
-            string findStudentId = "103";
+            string studentId = "105";
 
-            Domain.Program enrolledStudent = requestDirector.FindStudent(findStudentId);
+            Domain.Program enrolledStudent = requestDirector.FindStudent(studentId);
 
 
 
 
             Console.WriteLine();
-            foreach (var studentValues in enrolledStudent.EnrolledStudents)
+            foreach (var student in enrolledStudent.EnrolledStudents)
             {
 
-                Console.WriteLine($"{studentValues.StudentId} \t\t {studentValues.FirstName} \t\t{studentValues.lastName} \t\t{studentValues.Email} \t\t\t{enrolledStudent.ProgramCode}");
+                Console.WriteLine($"{student.StudentId} \t\t {student.FirstName} \t\t{student.lastName} \t\t{student.Email} \t\t{enrolledStudent.ProgramCode}");
             }
 
 
@@ -119,14 +119,14 @@ namespace DataConnectivity
             Console.WriteLine("\"-------------------------- Modify Student --------------------------");
 
 
-            string modifyFindStudentId = "103";
+            studentId = "105";
             enrolledStudent = new Domain.Program();
 
-            enrolledStudent = requestDirector.FindStudent(modifyFindStudentId);
+            enrolledStudent = requestDirector.FindStudent(studentId);
             Console.WriteLine();
             foreach (var beforeModify in enrolledStudent.EnrolledStudents)
             {
-                Console.WriteLine($"{beforeModify.StudentId} \t\t {beforeModify.FirstName} \t\t{beforeModify.lastName} \t\t{beforeModify.Email} \t\t\t{enrolledStudent.ProgramCode}");
+                Console.WriteLine($"{beforeModify.StudentId} \t\t {beforeModify.FirstName} \t\t{beforeModify.lastName} \t\t{beforeModify.Email} \t\t{enrolledStudent.ProgramCode}");
             }
 
 
@@ -134,8 +134,8 @@ namespace DataConnectivity
             //Programs modifyEnrolledStudent = requestDirector.FindStudent(modifyFindStudentId);
 
 
-            string? enrolledSuudentUpdateFirstName = "MARY";
-            string? enrolledSuudentUpdateLastName = "CHeei";
+            string? enrolledSuudentUpdateFirstName = "Mike";
+            string? enrolledSuudentUpdateLastName = "Smith";
             string? enrolledSuudentUpdateEmail = "wcho2@nait.ca";
 
             foreach (var modifyValues in enrolledStudent.EnrolledStudents)
@@ -143,14 +143,14 @@ namespace DataConnectivity
                 modifyValues.FirstName = IsStringEmptyOrNull(enrolledSuudentUpdateFirstName);
                 modifyValues.lastName = IsStringEmptyOrNull(enrolledSuudentUpdateLastName);
                 modifyValues.Email = IsStringEmptyOrNull(enrolledSuudentUpdateEmail);
-                modifyValues.StudentId = IsStringEmptyOrNull(modifyFindStudentId);
+                modifyValues.StudentId = IsStringEmptyOrNull(studentId);
 
             }
 
 
-            bool isModified = requestDirector.ModifyStudent(enrolledStudent);
+            confirmation = requestDirector.ModifyStudent(enrolledStudent);
 
-            if (isModified)
+            if (confirmation)
                 Console.WriteLine($"Student is successfully Updated! ");
             else
                 Console.WriteLine($"Failed!! ");
@@ -162,9 +162,9 @@ namespace DataConnectivity
             Console.WriteLine("");
             Console.WriteLine("\"-------------------------- Remove Student --------------------------");
 
-            string removeStudentId = "9";
+            studentId = "12";
             enrolledStudent = new Domain.Program();
-            enrolledStudent = requestDirector.FindStudent(removeStudentId);
+            enrolledStudent = requestDirector.FindStudent(studentId);
             Console.WriteLine();
 
             foreach (var beforeDelete in enrolledStudent.EnrolledStudents)
@@ -172,8 +172,8 @@ namespace DataConnectivity
                 Console.WriteLine($"{beforeDelete.StudentId} \t\t {beforeDelete.FirstName} \t\t{beforeDelete.lastName} \t\t{beforeDelete.Email} \t\t\t{enrolledStudent.ProgramCode}");
             }
 
-            bool removeConfirmation = requestDirector.RemoveStudent(removeStudentId);
-            if (removeConfirmation)
+            confirmation = requestDirector.RemoveStudent(studentId);
+            if (confirmation)
                 Console.WriteLine($"Student is successfully Removed! ");
             else
                 Console.WriteLine($"Failed!! ");
@@ -185,10 +185,10 @@ namespace DataConnectivity
             Console.WriteLine("\"-------------------------- Finds Program --------------------------");
 
 
-            string findProgramCode = "BAIST";
-            Domain.Program activeProgram = requestDirector.FindProgram(findProgramCode);
+            string programCode = "BAIST";
+            Domain.Program activeProgram = requestDirector.FindProgram(programCode);
 
-            foreach(var programs in activeProgram.EnrolledStudents)
+            foreach (var programs in activeProgram.EnrolledStudents)
             {
                 Console.WriteLine($"{programs.StudentId} \t\t\t {programs.FirstName} \t\t\t {programs.lastName} \t\t\t {programs.Email} \t\t\t{activeProgram.ProgramCode}");
             }

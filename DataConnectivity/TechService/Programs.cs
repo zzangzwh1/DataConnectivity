@@ -63,6 +63,7 @@ namespace DataConnectivity.TechService
             Domain.Program enrollStudents = new Domain.Program();
             Students students = new Students();
             Domain.Program activeProgram = new Domain.Program();
+
             using (SqlConnection conn = new SqlConnection(Students.connectionString))
             {
                 conn.Open();
@@ -100,7 +101,7 @@ namespace DataConnectivity.TechService
                                 }
                                 Console.WriteLine();
                                 Console.WriteLine();
-                                activeProgram = students.GetStudents(enrollStudents.ProgramCode);
+                                activeProgram = students.GetStudents(programCode);
 
                              
 

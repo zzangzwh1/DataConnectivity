@@ -11,46 +11,46 @@ namespace DataConnectivity.Domain
     {
         public bool EnrollStudent(Student acceptedStudent, string programCode)
         {
-            Students students = new Students();
-            bool success = students.AddStudent(acceptedStudent, programCode);
+            Students studentManager = new Students();
+            bool success = studentManager.AddStudent(acceptedStudent, programCode);
 
             return success;
 
         }
         public bool CreateProgram(string programCode, string description)
         {
-            Programs programs = new Programs();
+            Programs programManager = new Programs();
 
-            bool success = programs.AddProgram(programCode, description);
+            bool success = programManager.AddProgram(programCode, description);
 
             return success;
         }
         public Program FindStudent(string studentId)
         {
-            Students students = new Students();
-            Program enrolledStudent = students.GetStudent(studentId);
+            Students studentManager = new Students();
+            Program enrolledStudent = studentManager.GetStudent(studentId);
             
 
             return enrolledStudent;
         }
         public bool ModifyStudent(Program student)
         {
-            Students enrolledStudent = new Students();
-            bool isModify = enrolledStudent.UpdateStudent(student);
-            return isModify;
+            Students studentManager = new Students();
+            bool success = studentManager.UpdateStudent(student);
+            return success;
 
 
         }
-        public bool RemoveStudent(string removeStudentId)
+        public bool RemoveStudent(string studentId)
         {
-            Students removeStudent = new Students();
-            bool success = removeStudent.DeleteStudent(removeStudentId);
+            Students studentManager = new Students();
+            bool success = studentManager.DeleteStudent(studentId);
             return success;
         }
         public Program FindProgram(string findProgramCode)
         {
-            Programs findProgram = new Programs();
-            Program activeProgram =  findProgram.GetProgram(findProgramCode);
+            Programs programManager = new Programs();
+            Program activeProgram = programManager.GetProgram(findProgramCode);
            
             return activeProgram;
         }

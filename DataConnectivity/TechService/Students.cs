@@ -250,10 +250,10 @@ namespace DataConnectivity.TechService
 
         public Domain.Program GetStudents(string programCode)
         {
-
-            Student studentsInfo = new Student();
-            Domain.Program enrollStudent = new Domain.Program();
-
+            
+           // Student studentsInfo = new Student();
+            Domain.Program enrolledStudent = new Domain.Program();
+    
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
@@ -279,7 +279,7 @@ namespace DataConnectivity.TechService
 
                                 while (reader.Read())
                                 {
-                                    studentsInfo = new Student(); // Create a new object for each row
+                                    Student studentsInfo = new Student(); // Create a new object for each row
                                     string programCodes = string.Empty;
                                     for (int i = 0; i < reader.FieldCount; i++)
                                     {
@@ -313,11 +313,11 @@ namespace DataConnectivity.TechService
                                                 break;
 
                                         }
-
                                   
+
                                     }
-                                    enrollStudent.EnrolledStudents.Add(studentsInfo);
-                                    enrollStudent.ProgramCode = programCodes;
+                                    enrolledStudent.EnrolledStudents.Add(studentsInfo);
+                                    enrolledStudent.ProgramCode = programCodes;
 
 
 
@@ -346,7 +346,7 @@ namespace DataConnectivity.TechService
                 }
             }
 
-            return enrollStudent;
+            return enrolledStudent;
 
 
 
