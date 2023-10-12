@@ -192,30 +192,7 @@ namespace DataConnectivity
             {
                 Console.WriteLine($"{programs.StudentId} \t\t\t {programs.FirstName} \t\t\t {programs.lastName} \t\t\t {programs.Email} \t\t\t{activeProgram.ProgramCode}");
             }
-      
-         /*   foreach(var a in activeProgram)
-            {
-                forea
-            }*/
 
-          /*  HashSet<string> hash = new HashSet<string>();
-            foreach (var programss in activeProgram)
-            {
-              foreach(var p in programss.EnrolledStudents)
-                {
-                    hash.Add(p.StudentId);
-                    
-                    hash.Add(p.FirstName);
-                    hash.Add(p.lastName);
-                }
-            }
-
-            foreach(string s in hash)
-            {
-                Console.Write($"{s}\t\t");
-               
-            }
-           */
 
 
             #endregion

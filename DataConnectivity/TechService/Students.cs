@@ -250,13 +250,9 @@ namespace DataConnectivity.TechService
 
         public Domain.Program GetStudents(string programCode)
         {
-            //   StringBuilder students = new StringBuilder();
 
-         //  List<List<Student>> activeProgramAndStudents = new List<List<Student>>();
             Student studentsInfo = new Student();
             Domain.Program enrollStudent = new Domain.Program();
-            List<Domain.Program> program = new List<Domain.Program>();
-
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
@@ -319,9 +315,6 @@ namespace DataConnectivity.TechService
                                         }
 
                                   
-
-                                        //program.Add(enrollStudent);
-
                                     }
                                     enrollStudent.EnrolledStudents.Add(studentsInfo);
                                     enrollStudent.ProgramCode = programCodes;
