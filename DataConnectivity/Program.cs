@@ -102,14 +102,7 @@ namespace DataConnectivity
             Domain.Program enrolledStudent = requestDirector.FindStudent(studentId);
 
 
-
-
             Console.WriteLine();
-            foreach (var student in enrolledStudent.EnrolledStudents)
-            {
-
-                Console.WriteLine($"{student.StudentId} \t\t {student.FirstName} \t\t{student.lastName} \t\t{student.Email} \t\t{enrolledStudent.ProgramCode}");
-            }
 
 
             #endregion
@@ -124,10 +117,6 @@ namespace DataConnectivity
 
             enrolledStudent = requestDirector.FindStudent(studentId);
             Console.WriteLine();
-            foreach (var beforeModify in enrolledStudent.EnrolledStudents)
-            {
-                Console.WriteLine($"{beforeModify.StudentId} \t\t {beforeModify.FirstName} \t\t{beforeModify.lastName} \t\t{beforeModify.Email} \t\t{enrolledStudent.ProgramCode}");
-            }
 
 
 
@@ -202,56 +191,6 @@ namespace DataConnectivity
 
             #region For Inserting Value Mannually
 
-            ///Test User Interface (Console)
-            ///--------------------
-            ///Enrolls Students
-            ///get Values from User Interface
-
-            /*
-             string studentId = string.Empty;
-            string firstName = string.Empty;
-            string lastName = string.Empty;
-            string email = string.Empty;
-            string programCode = string.Empty;
-            string? consoleLine = string.Empty;
-            Console.WriteLine($"Enter Student ID : ");
-            if((consoleLine = Console.ReadLine()) != null)
-            {
-                studentId = consoleLine;
-            }
-            Console.WriteLine("Enter First Name : ");
-            if((consoleLine = Console.ReadLine()) != null)
-            {
-                firstName = consoleLine;
-            }
-            Console.WriteLine("Enter Last Name : ");
-            if ((consoleLine = Console.ReadLine()) != null)
-                lastName = consoleLine;           
-
-            Console.WriteLine("Enter Email : ");
-            if ((consoleLine = Console.ReadLine()) != null)
-                email = consoleLine;
-
-            Console.WriteLine("Enter Program Code : ");
-            if ((consoleLine = Console.ReadLine()) != null)
-                programCode = consoleLine;
-
-
-            // process
-            bool confirmation;
-            Students acceptedStudent = new()
-            {
-                StudentId = studentId,
-                FirstName = firstName,
-                lastName = lastName,
-                Email = email            
-            
-            };
-            BCS ReuqestDirector = new();
-            confirmation = requestDirector.EnrollStudent(acceptedStudent, programCode);
-            Console.WriteLine(confirmation);
-            
-             */
 
 
             #endregion
